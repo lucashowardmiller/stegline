@@ -13,7 +13,7 @@ import manipulationModuale
 import fileModule
 #TODO Resize
 
-__authors__ = "Lucas Miller"
+__authors__ = ["Lucas Miller", "Nicholas Snell"]
 __description__ = "Handles varies image manipulation modules as specified"
 __maintainer__ = "Lucas Miller"
 __version__ = "0.0"
