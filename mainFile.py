@@ -13,7 +13,7 @@ import manipulationModuale
 import fileModule
 #TODO Resize
 
-__authors__ = "Lucas Miller"
+__authors__ = ["Lucas Miller", "Nicholas Snell"]
 __description__ = "Handles varies image manipulation modules as specified"
 __maintainer__ = "Lucas Miller"
 __version__ = "0.0"
@@ -32,6 +32,8 @@ moduleParser.add_argument('-m', action="store_true", default=False, help='Enable
 moduleParser.add_argument('-x', action="store_true", default=False, help='Enables exif module')
 moduleParser.add_argument('-t', action="store_true", default=False, help='Enables text find modules')
 moduleParser.add_argument('-f', action="store_true", default=False, help='Enables file mis-match modules')
+#TODO Resize mod to find hidden bytes
+#TODO Strings mod to run a regex/dictonary attack on hidden info
 
 
 # Parsing and using the arguments
