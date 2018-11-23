@@ -1,24 +1,25 @@
-#TODO writ#TODO write metadata handler
-#TODO "write" exif handler
+# TODO writ#TODO write metadata handler
+# TODO "write" exif handler
 
 import os
 from PIL import Image
 import exifread
 
 
-def metadata (input_file, output_folder):
-   stat_info = os.stat(input_file)
+def metadata(input_file, output_folder):
+    # this is on the backburner for a bit
+    # not very ctf nor super flashy
+    # also pretty jank
+    stat_info = os.stat(input_file)
+    print("Meta is not implemnted")
 
-   print()
+
 def exif(input_file, output_folder):
-  img = open(input_file, 'rb')
-  tags = exifread.process_file(img)
-  #TODO format exif strings and create a report
+    img = open(input_file, 'rb')
+    tags = exifread.process_file(img)
 
+    f = open("report.txt", "w+")
+    f.write("Exif Data: \n")
 
-  f = open("report.txt", "w+")
-
-  for tag in tags.keys():
-      if tag not in ('JPEGThumbnail', 'TIFFThumbnail', 'Filename', 'EXIF MakerNote'):
-
-          f.write("Key: %s, value %s" % (tag, tags[tag]) + "\n")
+    for tag in tags.keys():
+        f.write("Key: %s, value %s" % (tag, tags[tag]) + "\n")

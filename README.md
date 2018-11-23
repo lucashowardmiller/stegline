@@ -3,7 +3,7 @@ Stegline is a repackaging of existing programs, non-novel implemenations of pyth
 
 StegLine will put the results of each modules analysis into the output_folder.
 
-##Dependencies:
+#Dependencies:
 
 (It's recomended you create a virtual enviroment for running the project)
 
