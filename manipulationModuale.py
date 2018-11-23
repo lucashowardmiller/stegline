@@ -8,6 +8,7 @@ import os
 
 # TODO add bluring and such for better tesserect handeling / change to opencv
 # TODO add baseline functionality and create some sort of report
+# pytesserct is bad
 
 def textfind(input_file, output_folder):
     baseline = textsearch(input_file)
@@ -20,7 +21,7 @@ def imagemanipulation(input_file, output_folder):
     print()
 
 
-def textsearch(input_file, output_folder):
+def textsearch(input_file):
     image = cv2.imread(input_file)
     orig = image.copy()
 
@@ -28,7 +29,7 @@ def textsearch(input_file, output_folder):
     filename = "{}.png".format(os.getpid())
     cv2.imwrite(filename, gray)
 
-    text = pytesseract.image_to_string(Image.open(filename))
+    text = pytesseract.image_to_string(Image.open(input_file))
     os.remove(filename)
     return text
 
