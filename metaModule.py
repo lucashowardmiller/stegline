@@ -11,9 +11,14 @@ def metadata (input_file, output_folder):
 
    print()
 def exif(input_file, output_folder):
-  # exifImage = Image.open("input_file")
-  f = open(input_file, 'rb')
-  tags = exifread.process_file(f)
-  print(tags)
+  img = open(input_file, 'rb')
+  tags = exifread.process_file(img)
+  #TODO format exif strings and create a report
 
-  #testedit
+
+  f = open("report.txt", "w+")
+
+  for tag in tags.keys():
+      if tag not in ('JPEGThumbnail', 'TIFFThumbnail', 'Filename', 'EXIF MakerNote'):
+
+          f.write("Key: %s, value %s" % (tag, tags[tag]) + "\n")
