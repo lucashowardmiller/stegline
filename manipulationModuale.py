@@ -5,18 +5,18 @@ import os
 
 #TODO add bluring and such for better tesserect handeling / change to opencv
 
-def textfind(input_file):
+def textfind(input_file, output_folder):
     baseline = textsearch(input_file)
 
     print()
 
 
-def imagemanipulation(input_file):
+def imagemanipulation(input_file, output_folder):
 
     print()
 
 
-def textsearch(input_file):
+def textsearch(input_file, output_folder):
     image = cv2.imread(input_file)
     orig = image.copy()
 
