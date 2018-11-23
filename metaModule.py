@@ -23,3 +23,4 @@ def exif(input_file, output_folder):
 
     for tag in tags.keys():
         f.write("Key: %s, value %s" % (tag, tags[tag]) + "\n")
+
