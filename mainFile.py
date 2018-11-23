@@ -23,7 +23,7 @@ __license__ = "CC BY-NC-ND"
 #creates a parser to handle in/out filepaths
 fileParser = argparse.ArgumentParser(description='Select in/out filepaths')
 fileParser.add_argument("INPUT_FILE", help="Path to input file")
-#fileParser.add_argument("OUTPUT_FILE", help="Path to output file")
+fileParser.add_argument("OUTPUT_FOLDER", help="Path to output file")
 
 #creates a parser to handle modules
 moduleParser = argparse.ArgumentParser(description='Select what modules to use')
@@ -41,8 +41,8 @@ args = fileParser.parse_args()
 
 input_file = args.INPUT_FILE
 print(input_file)
-#output_file = args.OUTPUT_FILE
-#print(output_file)
+output_folder = args.OUTPUT_FOLDER
+print(output_folder)
 
 if os.path.isfile(input_file):
     print("is file")

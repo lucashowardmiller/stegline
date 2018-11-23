@@ -5,7 +5,7 @@ import subprocess
 #todo find python bindings
 
 
-def filecheck(input_file):
+def filecheck(input_file, output_folder):
     file_extension = os.path.splitext(input_file)
 
 
