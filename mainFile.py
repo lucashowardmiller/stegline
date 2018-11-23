@@ -34,6 +34,8 @@ moduleParser.add_argument('-m', action="store_true", default=False, help='Enable
 moduleParser.add_argument('-x', action="store_true", default=False, help='Enables exif module')
 moduleParser.add_argument('-t', action="store_true", default=False, help='Enables text find modules')
 moduleParser.add_argument('-f', action="store_true", default=False, help='Enables file mis-match modules')
+moduleParser.add_argument('--all', action="store_true", default=False, help='Enables all modules')
+
 #TODO Resize mod to find hidden bytes
 #TODO Strings mod to run a regex/dictonary attack on hidden info
 
@@ -50,6 +52,12 @@ if os.path.isfile(input_file):
    print("is file")
 else:
    print("INPUT_FILE must be a file")
+   sys.exit(1)
+
+if os.path.isdir(output_folder):
+   print("is file")
+else:
+   print("output_folder must be a directory")
    sys.exit(1)
 
 
