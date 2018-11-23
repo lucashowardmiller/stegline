@@ -1,7 +1,4 @@
-from PIL import Image
-import pytesseract
-import cv2
-import os
+
 
 
 # https://motherboard.vice.com/en_us/article/qkjbkw/hack-this-edit-an-image-with-python
@@ -22,15 +19,4 @@ def imagemanipulation(input_file, output_folder):
 
 
 def textsearch(input_file):
-    image = cv2.imread(input_file)
-    orig = image.copy()
-
-    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    filename = "{}.png".format(os.getpid())
-    cv2.imwrite(filename, gray)
-
-    text = pytesseract.image_to_string(Image.open(input_file))
-    os.remove(filename)
-    return text
-
-    print(text)
+    return ("neat-o stringo")
