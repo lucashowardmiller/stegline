@@ -1,3 +1,4 @@
+#TODO add common outfile/report schema
 #used to handle the command line args
 import argparse
 #import os for file check
