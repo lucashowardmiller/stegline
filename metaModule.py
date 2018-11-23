@@ -15,3 +15,5 @@ def exif(input_file, output_folder):
   f = open(input_file, 'rb')
   tags = exifread.process_file(f)
   print(tags)
+
+  #testedit
