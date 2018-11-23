@@ -55,31 +55,31 @@ else:
 argsModules = moduleParser.parse_args()
 if argsModules.b:
     print("LSB turned on")
-    lsbModule.lsb(input_file)
+    lsbModule.lsb(input_file, output_folder)
 else:
     print("LSB turned off")
 
 if argsModules.m:
     print("Metadata turned on")
-    metaModule.metadata(input_file)
+    metaModule.metadata(input_file, output_folder)
 else:
     print("Metadata turned off")
 
 if argsModules.x:
     print("exif turned on")
-    metaModule.exif(input_file)
+    metaModule.exif(input_file, output_folder)
 else:
     print("exif turned off")
 
 if argsModules.t:
     print("Text find turned on")
-    manipulationModuale.textfind(input_file)
+    manipulationModuale.textfind(input_file, output_folder)
 else:
     print("Text find turned off")
 
 if argsModules.f:
     print("File check turned on")
-    fileModule.filecheck(input_file)
+    fileModule.filecheck(input_file, output_folder)
 else:
     print("File check turned off")
 
