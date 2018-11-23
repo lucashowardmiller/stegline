@@ -14,6 +14,8 @@ import manipulationModuale
 import fileModule
 #TODO Resize
 
+
+#will increment to 1.0 when everything in spec works, and then update status to something less broken sounding
 __authors__ = ["Lucas Miller", "Nicholas Snell"]
 __description__ = "Handles varies image manipulation modules as specified"
 __maintainer__ = "Lucas Miller"
@@ -46,41 +48,40 @@ output_folder = args.OUTPUT_FOLDER
 print(output_folder)
 
 if os.path.isfile(input_file):
-    print("is file")
+   print("is file")
 else:
-    print("INPUT_FILE must be a file")
-    sys.exit(1)
+   print("INPUT_FILE must be a file")
+   sys.exit(1)
 
 
 #printout what mods args are enabled and runs the functions
 argsModules = moduleParser.parse_args()
 if argsModules.b:
-    print("LSB turned on")
-    lsbModule.lsb(input_file, output_folder)
+   print("LSB turned on")
+   lsbModule.lsb(input_file, output_folder)
 else:
-    print("LSB turned off")
+   print("LSB turned off")
 
 if argsModules.m:
-    print("Metadata turned on")
-    metaModule.metadata(input_file, output_folder)
+   print("Metadata turned on")
+   metaModule.metadata(input_file, output_folder)
 else:
-    print("Metadata turned off")
+   print("Metadata turned off")
 
 if argsModules.x:
-    print("exif turned on")
-    metaModule.exif(input_file, output_folder)
+   print("exif turned on")
+   metaModule.exif(input_file, output_folder)
 else:
-    print("exif turned off")
+   print("exif turned off")
 
 if argsModules.t:
-    print("Text find turned on")
-    manipulationModuale.textfind(input_file, output_folder)
+   print("Text find turned on")
+   manipulationModuale.textfind(input_file, output_folder)
 else:
-    print("Text find turned off")
+   print("Text find turned off")
 
 if argsModules.f:
-    print("File check turned on")
-    fileModule.filecheck(input_file, output_folder)
+   print("File check turned on")
+   fileModule.filecheck(input_file, output_folder)
 else:
-    print("File check turned off")
-
+   print("File check turned off")
