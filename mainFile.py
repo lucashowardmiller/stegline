@@ -1,3 +1,4 @@
+#TODO add common outfile/report schema
 #used to handle the command line args
 import argparse
 #import os for file check
@@ -18,7 +19,7 @@ __description__ = "Handles varies image manipulation modules as specified"
 __maintainer__ = "Lucas Miller"
 __version__ = "0.0"
 __status__ = "Prototype"
-__license__ = "CC BY-NC-ND"
+__license__ = "MIT"
 
 #creates a parser to handle in/out filepaths
 fileParser = argparse.ArgumentParser(description='Select in/out filepaths')

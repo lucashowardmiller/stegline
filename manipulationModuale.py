@@ -4,6 +4,7 @@ import cv2
 import os
 
 #TODO add bluring and such for better tesserect handeling / change to opencv
+#TODO add baseline functionality and create some sort of report
 
 def textfind(input_file, output_folder):
     baseline = textsearch(input_file)
