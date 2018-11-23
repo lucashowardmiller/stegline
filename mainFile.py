@@ -55,7 +55,7 @@ else:
    sys.exit(1)
 
 if os.path.isdir(output_folder):
-   print("is file")
+    print("is dir")
 else:
    print("output_folder must be a directory")
    sys.exit(1)
