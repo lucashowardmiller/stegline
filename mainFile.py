@@ -24,12 +24,11 @@ __status__ = "Prototype"
 __license__ = "MIT"
 
 #creates a parser to handle in/out filepaths
-fileParser = argparse.ArgumentParser(description='Select in/out filepaths')
-fileParser.add_argument("INPUT_FILE", help="Path to input file")
-fileParser.add_argument("OUTPUT_FOLDER", help="Path to output file")
+moduleParser = argparse.ArgumentParser(description='Select what modules to use')
+moduleParser.add_argument("INPUT_FILE", help="Path to input file")
+moduleParser.add_argument("OUTPUT_FOLDER", help="Path to output file")
 
 #creates a parser to handle modules
-moduleParser = argparse.ArgumentParser(description='Select what modules to use')
 moduleParser.add_argument('-b', action="store_true", default=False, help='Enables LSB module')
 moduleParser.add_argument('-m', action="store_true", default=False, help='Enables metadata module')
 moduleParser.add_argument('-x', action="store_true", default=False, help='Enables exif module')
@@ -40,7 +39,7 @@ moduleParser.add_argument('-f', action="store_true", default=False, help='Enable
 
 
 # Parsing and using the arguments
-args = fileParser.parse_args()
+args = moduleParser.parse_args()
 
 input_file = args.INPUT_FILE
 print(input_file)
