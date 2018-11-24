@@ -14,6 +14,7 @@ import fileModule
 #TODO Resize
 
 
+
 #will increment to 1.0 when everything in spec works, and then update status to something less broken sounding
 __authors__ = ["Lucas Miller", "Nicholas Snell"]
 __description__ = "Handles varies image manipulation modules as specified"
@@ -59,6 +60,15 @@ else:
    print("output_folder must be a directory")
    sys.exit(1)
 
+# radical and needed lines
+reportLocation = output_folder + '/' + 'report.txt'
+f = open(reportLocation, "a+")
+f.write(" __  _____  __  ___   __   _____    __  __ " + "\n")
+f.write("/ _\/__   \/__\/ _ \ / /   \_   \/\ \ \/__\ " + "\n")
+f.write("\ \   / /\/_\ / /_\// /     / /\/  \/ /_\\  " + "\n")
+f.write("_\ \ / / //__/ /_\\\/ /___/\/ /_/ /\  //__  " + "\n")
+f.write("\__/ \/  \__/\____/\____/\____/\_\ \/\__/  " + "\n")
+f.write("                                           " + "\n")
 
 #printout what mods args are enabled and runs the functions
 argsModules = moduleParser.parse_args()
@@ -91,3 +101,4 @@ if argsModules.f:
    fileModule.filecheck(input_file, output_folder)
 else:
    print("File check turned off")
+
