@@ -34,6 +34,7 @@ moduleParser.add_argument('-m', action="store_true", default=False, help='Enable
 moduleParser.add_argument('-x', action="store_true", default=False, help='Enables exif module')
 moduleParser.add_argument('-t', action="store_true", default=False, help='Enables text find modules')
 moduleParser.add_argument('-f', action="store_true", default=False, help='Enables file info modules')
+moduleParser.add_argument('-s', action="store_true", default=False, help='Enables strings module')
 moduleParser.add_argument('--all', action="store_true", default=False, help='Enables all modules')
 
 #TODO Resize mod to find hidden bytes
@@ -101,4 +102,10 @@ if argsModules.f:
    fileModule.filecheck(input_file, output_folder)
 else:
    print("File check turned off")
+
+if argsModules.s:
+   print("strings is turned on")
+   metaModule.strings(input_file, output_folder)
+else:
+   print("strings is turned off")
 
