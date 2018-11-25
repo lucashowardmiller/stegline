@@ -1,9 +1,11 @@
 import os
 import binwalk
 
+
 def filecheck(input_file, output_folder):
     file_extension = os.path.splitext(input_file)[1]
     fileList = []
+
 
     for module in binwalk.scan(input_file, signature=True, quiet=True):
         # print("%s Results:" % module.name)
