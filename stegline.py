@@ -8,11 +8,12 @@ import lsbModule
 #meta
 import metaModule
 #text find
-import manipulationModuale
+import manipulationModule
 #ext and type
 import fileModule
 #TODO Resize
-
+#TODO add suport for no outdir and then use tempfiles, + opt args in def()
+#TODO standerdize report location and limit code re-use
 
 
 #will increment to 1.0 when everything in spec works, and then update status to something less broken sounding
@@ -36,9 +37,7 @@ moduleParser.add_argument('-t', action="store_true", default=False, help='Enable
 moduleParser.add_argument('-f', action="store_true", default=False, help='Enables file info modules')
 moduleParser.add_argument('-s', action="store_true", default=False, help='Enables strings module')
 moduleParser.add_argument('--all', action="store_true", default=False, help='Enables all modules')
-
 #TODO Resize mod to find hidden bytes
-#TODO Strings mod to run a regex/dictonary attack on hidden info
 
 
 # Parsing and using the arguments
@@ -93,7 +92,7 @@ else:
 
 if argsModules.t:
    print("Text find turned on")
-   manipulationModuale.textfind(input_file, output_folder)
+   manipulationModule.textfind(input_file, output_folder)
 else:
    print("Text find turned off")
 

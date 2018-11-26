@@ -20,6 +20,4 @@ pip install pytesseract
 
 brew install tesseract --HEAD
 
-brew install exiftool
-
 pip install exifread
