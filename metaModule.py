@@ -26,6 +26,8 @@ def exif(input_file, output_folder):
         f.write("Key: %s, value %s" % (tag, tags[tag]) + "\n")
     f.write("\n")
 
+    f.close()
+
 
 def strings(input_file, output_folder):
     reportLocation = output_folder + '/' + 'report.txt'

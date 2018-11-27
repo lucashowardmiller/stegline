@@ -1,5 +1,6 @@
-
-
+import cv2
+import numpy as np
+from PIL import Image
 
 # https://motherboard.vice.com/en_us/article/qkjbkw/hack-this-edit-an-image-with-python
 

@@ -3,9 +3,10 @@ import binwalk
 
 
 def filecheck(input_file, output_folder):
-    file_extension = os.path.splitext(input_file)[1]
+    file_extension = os.path.splitext(input_file)[1][1:]
     fileList = []
-
+    #.jpg first JPEG used to verify between file_extension
+    extensionToFile = [('.jpg','JPEG'), ('.tif','TIFF'), ('.gif','GIF'), ('.tif','TIFF'), ('.tif','TIFF') ]
 
     for module in binwalk.scan(input_file, signature=True, quiet=True):
         # print("%s Results:" % module.name)
@@ -32,4 +33,5 @@ def filecheck(input_file, output_folder):
             f.write("Hidden file " + str(i) + " " + fileList[i] + "\n")
             i += 1
 
+    f.close()
     print("end of filecheck")
