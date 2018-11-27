@@ -36,7 +36,7 @@ moduleParser.add_argument('-x', action="store_true", default=False, help='Enable
 moduleParser.add_argument('-t', action="store_true", default=False, help='Enables text find modules')
 moduleParser.add_argument('-f', action="store_true", default=False, help='Enables file info modules')
 moduleParser.add_argument('-s', action="store_true", default=False, help='Enables strings module')
-moduleParser.add_argument('--all', action="store_true", default=False, help='Enables all modules')
+moduleParser.add_argument('-a', action="store_true", default=False, help='Enables all modules')
 #TODO Resize mod to find hidden bytes
 
 
@@ -69,40 +69,41 @@ f.write("\ \   / /\/_\ / /_\// /     / /\/  \/ /_\\  " + "\n")
 f.write("_\ \ / / //__/ /_\\\/ /___/\/ /_/ /\  //__  " + "\n")
 f.write("\__/ \/  \__/\____/\____/\____/\_\ \/\__/  " + "\n")
 f.write("                                           " + "\n")
+f.close()
 
 #printout what mods args are enabled and runs the functions
 argsModules = moduleParser.parse_args()
-if argsModules.b:
+if argsModules.b or argsModules.a:
    print("LSB turned on")
    lsbModule.lsb(input_file, output_folder)
 else:
    print("LSB turned off")
 
-if argsModules.m:
+if argsModules.m or argsModules.a:
    print("Metadata turned on")
    metaModule.metadata(input_file, output_folder)
 else:
    print("Metadata turned off")
 
-if argsModules.x:
+if argsModules.x or argsModules.a:
    print("exif turned on")
    metaModule.exif(input_file, output_folder)
 else:
    print("exif turned off")
 
-if argsModules.t:
+if argsModules.t or argsModules.a:
    print("Text find turned on")
    manipulationModule.textfind(input_file, output_folder)
 else:
    print("Text find turned off")
 
-if argsModules.f:
+if argsModules.f or argsModules.a:
    print("File check turned on")
    fileModule.filecheck(input_file, output_folder)
 else:
    print("File check turned off")
 
-if argsModules.s:
+if argsModules.s or argsModules.a:
    print("strings is turned on")
    metaModule.strings(input_file, output_folder)
 else:
