@@ -17,7 +17,7 @@ import fileModule
 
 
 #will increment to 1.0 when everything in spec works, and then update status to something less broken sounding
-__authors__ = ["Lucas Miller", "Nicholas Snell"]
+__authors__ = ["Lucas Miller"]
 __description__ = "Handles varies image manipulation modules as specified"
 __maintainer__ = "Lucas Miller"
 __version__ = "0.0"
