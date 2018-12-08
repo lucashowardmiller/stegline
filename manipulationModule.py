@@ -17,5 +17,9 @@ def imagemanipulation(input_file, output_folder):
     print('end of image manipulation')
 
 
+def invert(input_file, output_folder):
+    print("placeholder for invert ")
+
+
 def textsearch(input_file):
     return ("neat-o stringo")

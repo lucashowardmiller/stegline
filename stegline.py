@@ -36,6 +36,8 @@ moduleParser.add_argument('-x', action="store_true", default=False, help='Enable
 moduleParser.add_argument('-t', action="store_true", default=False, help='Enables text find modules')
 moduleParser.add_argument('-f', action="store_true", default=False, help='Enables file info modules')
 moduleParser.add_argument('-s', action="store_true", default=False, help='Enables strings module')
+# TODO implemnt check
+moduleParser.add_argument('-z', action="store_true", default=False, help='Enables resize module')
 moduleParser.add_argument('-a', action="store_true", default=False, help='Enables all modules')
 #TODO Resize mod to find hidden bytes
 
@@ -63,12 +65,12 @@ else:
 # radical and needed lines
 reportLocation = output_folder + '/' + 'report.txt'
 f = open(reportLocation, "a+")
-f.write(" __  _____  __  ___   __   _____    __  __ " + "\n")
+f.write(" __  _____  __  ___   __   _____    __  __  " + "\n")
 f.write("/ _\/__   \/__\/ _ \ / /   \_   \/\ \ \/__\ " + "\n")
 f.write("\ \   / /\/_\ / /_\// /     / /\/  \/ /_\\  " + "\n")
 f.write("_\ \ / / //__/ /_\\\/ /___/\/ /_/ /\  //__  " + "\n")
-f.write("\__/ \/  \__/\____/\____/\____/\_\ \/\__/  " + "\n")
-f.write("                                           " + "\n")
+f.write("\__/ \/  \__/\____/\____/\____/\_\ \/\__/   " + "\n")
+f.write("                                            " + "\n")
 f.close()
 
 #printout what mods args are enabled and runs the functions

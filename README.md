@@ -3,21 +3,18 @@ Stegline is a repackaging of existing programs, non-novel implemenations of pyth
 
 StegLine will put the results of each modules analysis into the output_folder.
 
-#Usage:
+### Usage:
 
-"python stegline.py StegImage.jpg outdir -f"
+	"python stegline.py StegImage.jpg outdir -f"
 
                     
-#Dependencies:
+### Dependencies:
 
 (It's recomended you create a virtual enviroment for running the project)
 
-pip install Pillow
-
-Binwalk (from source)
-
-pip install pytesseract
-
-brew install tesseract --HEAD
-
-pip install exifread
+Current Dependencies:
+- pip install Pillow
+- Binwalk (from source)
+- brew install tesseract --HEAD
+- pip install pytesseract
+- pip install exifread

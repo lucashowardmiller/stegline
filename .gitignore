@@ -1,0 +1,9 @@
+#Ignore Pycharm bloat
+.idea
+
+
+.idea/inspectionProfiles/
+.idea/workspace.xml
+fileModule.pyc
+lsbModule.pyc
+metaModule.pyc
