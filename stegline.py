@@ -11,9 +11,8 @@ import metaModule
 import manipulationModule
 #ext and type
 import fileModule
-#TODO Resize
-#TODO add suport for no outdir and then use tempfiles, + opt args in def()
-#TODO standerdize report location and limit code re-use
+# TODO add support for no outdir and then use tempfiles, + opt args in def()
+# TODO standardize report location and limit code re-use
 
 
 #will increment to 1.0 when everything in spec works, and then update status to something less broken sounding
@@ -36,10 +35,8 @@ moduleParser.add_argument('-x', action="store_true", default=False, help='Enable
 moduleParser.add_argument('-t', action="store_true", default=False, help='Enables text find modules')
 moduleParser.add_argument('-f', action="store_true", default=False, help='Enables file info modules')
 moduleParser.add_argument('-s', action="store_true", default=False, help='Enables strings module')
-# TODO implemnt check
 moduleParser.add_argument('-z', action="store_true", default=False, help='Enables resize module')
 moduleParser.add_argument('-a', action="store_true", default=False, help='Enables all modules')
-#TODO Resize mod to find hidden bytes
 
 
 # Parsing and using the arguments
@@ -71,6 +68,8 @@ f.write("\ \   / /\/_\ / /_\// /     / /\/  \/ /_\\  " + "\n")
 f.write("_\ \ / / //__/ /_\\\/ /___/\/ /_/ /\  //__  " + "\n")
 f.write("\__/ \/  \__/\____/\____/\____/\_\ \/\__/   " + "\n")
 f.write("                                            " + "\n")
+f.write("Created by Lucas Miller" + "\n")
+f.write("github.com/lucashowardmiller/stegline" + "\n")
 f.close()
 
 #printout what mods args are enabled and runs the functions
@@ -110,4 +109,11 @@ if argsModules.s or argsModules.a:
    metaModule.strings(input_file, output_folder)
 else:
    print("strings is turned off")
+
+# TODO enable resize again for -a once it stops breaking files
+if argsModules.z:
+   print("resize is turned on")
+   manipulationModule.resize(input_file, output_folder)
+else:
+   print("resize is turned off")
 
