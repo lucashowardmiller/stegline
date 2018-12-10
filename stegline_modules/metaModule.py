@@ -30,10 +30,10 @@ def exif(input_file, output_folder):
 
 
 def strings(input_file, output_folder):
-    # used to match ABCD{FLAG_w@CkY} (not currently used)
+    # used to match ABCD{FLAG_w@CkY}
     flag_brackets = re.compile('.*{.*}')
     # used to match NCL/SKY, can false match with something like NKL-ABCD-1234
-    flag_skyncl = re.compile('[NCLSKY]{3}-[a-zA-Z]{3}-[0-9]{4}')
+    flag_skyncl = re.compile('[NCLSKYnclsky]{3}-[a-zA-Z]{3}-[0-9]{4}')
 
 
     reportLocation = output_folder + '/' + 'report.txt'
@@ -57,11 +57,10 @@ def strings(input_file, output_folder):
         f.write("\n" + "Potential flags found using Strings:" + "\n")
 
         for match in bracketMatch:
-            f.write("Possible Flag: " + match)
+            f.write("Possible CTF Flag: " + match)
 
         for match in skynclMatch:
-            f.write("Possible Flag: " + match)
+            f.write("Possible NCL Flag: " + match)
     else:
         f.write("\n" + "No flags in SKY/NCL format or .*{.*} format were found")
     f.close()
-    print("end of strings")
