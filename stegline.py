@@ -42,15 +42,11 @@ print(input_file)
 output_folder = args.OUTPUT_FOLDER
 print(output_folder)
 
-if os.path.isfile(input_file):
-    print("is file")
-else:
+if not os.path.isfile(input_file):
     print("INPUT_FILE must be a file")
     sys.exit(1)
 
-if os.path.isdir(output_folder):
-    print("is dir")
-else:
+if not os.path.isdir(output_folder):
     print("output_folder must be a directory")
     sys.exit(1)
 
@@ -70,45 +66,25 @@ f.close()
 # printout what mods args are enabled and runs the functions
 argsModules = moduleParser.parse_args()
 if argsModules.b or argsModules.a:
-    print("LSB turned on")
     lsbModule.lsb(input_file, output_folder)
-else:
-    print("LSB turned off")
 
 if argsModules.m or argsModules.a:
-    print("Metadata turned on")
     metaModule.metadata(input_file, output_folder)
-else:
-    print("Metadata turned off")
 
 if argsModules.x or argsModules.a:
-    print("exif turned on")
     metaModule.exif(input_file, output_folder)
-else:
-    print("exif turned off")
 
 if argsModules.t or argsModules.a:
-    print("Text find turned on")
     manipulationModule.textfind(input_file, output_folder)
-else:
-    print("Text find turned off")
 
 if argsModules.f or argsModules.a:
-    print("File check turned on")
     fileModule.filecheck(input_file, output_folder)
-else:
-    print("File check turned off")
 
 if argsModules.s or argsModules.a:
-    print("strings is turned on")
     metaModule.strings(input_file, output_folder)
-else:
-    print("strings is turned off")
 
 # TODO enable resize again for -a once it stops breaking files
 if argsModules.z:
-    print("resize is turned on")
     manipulationModule.resize(input_file, output_folder)
-else:
-    print("resize is turned off")
+
 
