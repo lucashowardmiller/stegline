@@ -4,13 +4,11 @@ import argparse
 import os
 import sys
 #lsb
-import lsbModule
 #meta
-import metaModule
 #text find
-import manipulationModule
 #ext and type
-import fileModule
+from stegline_modules import fileModule, lsbModule, manipulationModule, metaModule
+
 # TODO add support for no outdir and then use tempfiles, + opt args in def()
 # TODO standardize report location and limit code re-use
 
