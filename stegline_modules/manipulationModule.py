@@ -23,9 +23,6 @@ def resize(input_file, output_folder):
 
     if not os.path.exists(extractionFolder):
         os.mkdir(extractionFolder)
-        print("Directory ExtractedFiles created ")
-    else:
-        print("Directory ExtractedFiles already exists")
 
     shutil.copy2(input_file, copiedimage)
     print(copiedimage)
