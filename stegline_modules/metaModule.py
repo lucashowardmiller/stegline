@@ -1,10 +1,10 @@
-#used for mkdir
+# used for mkdir
 import os
-#used to get exif data in exif()
+# used to get exif data in exif()
 import exifread
-#used to call strings in strings()
+# used to call strings in strings()
 import subprocess
-#used for iterating through strings-ouput.txt to look for .{.} and NCL/SKY
+# used for iterating through strings-ouput.txt to look for .{.} and NCL/SKY
 import re
 
 def metadata(input_file, output_folder):
@@ -12,7 +12,7 @@ def metadata(input_file, output_folder):
     # not very ctf nor super flashy
     # also pretty jank
     stat_info = os.stat(input_file)
-    print("Metadata is not implemented")
+
 
 
 def exif(input_file, output_folder):
