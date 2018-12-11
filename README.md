@@ -10,10 +10,11 @@ StegLine will put the results of each modules analysis into the output_folder.
 	"python stegline.py StegImage.jpg outdir (args)"
 
 ### Current Functionality:
-- Can get some ctf's flags automatically from the strings and output them to a report
-- Can output an image's exif tags and output them to a report
-- Can see if a files magic bytes matches its file extension
+- Getting some ctf's flags automatically from the strings and output them to a report
+- Outputting an image's exif tags and output them to a report
+- Seeing if a files magic bytes matches its file extension
 - Can detect hidden files in an image
+- OCR capabilities
 
 
 ### Dependencies:
@@ -24,3 +25,5 @@ Current Dependencies:
 - Pillow 5.3.0
 - Binwalk (from source, pypi package does not work)
 - ExifRead 2.1.2
+- Pytesseract
+- cv2
