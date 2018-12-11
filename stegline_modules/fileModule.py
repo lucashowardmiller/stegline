@@ -5,13 +5,11 @@ import binwalk
 def filecheck(input_file, output_folder):
     file_extension = os.path.splitext(input_file)[1][1:]
     fileList = []
-    #.jpg first JPEG used to verify between file_extension
-    extensionToFile = [('.jpg', 'JPEG'), ('.tif', 'TIFF'), ('.gif', 'GIF'), ('.tif',' TIFF'), ('.tif', 'TIFF')]
+    # .jpg first JPEG used to verify between file_extension
+    extensionToFile = [('.jpg', 'JPEG'), ('.tif', 'TIFF'), ('.gif', 'GIF')]
 
     for module in binwalk.scan(input_file, signature=True, quiet=True):
-        # print("%s Results:" % module.name)
         for result in module.results:
-            print((result.description))
             fileList.append(result.description)
 
     # matching binwalk filetypes to real filetypes looks like effort (dict/tuples?)
@@ -34,4 +32,3 @@ def filecheck(input_file, output_folder):
             i += 1
 
     f.close()
-    print("end of filecheck")
