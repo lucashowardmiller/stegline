@@ -57,6 +57,11 @@ def shiftcolormap(input_file):
     print("end of colormap")
 
 
+# changes tints to look for hidden text
+def imagemanipulation(input_file, output_folder):
+    print('end of image manipulation')
+
+
 # wraps image_ocr() to print out ocr results nicely
 def textfind(input_file, output_folder):
 
@@ -79,13 +84,9 @@ def textfind(input_file, output_folder):
     print('end of textfind()')
 
 
-# changes tints to look for hidden text
-def imagemanipulation(input_file, output_folder):
-    print('end of image manipulation')
-
-
 # will clean an image before pytesseract
 def image_ocr(input_file, output_folder):
+    stringsList = []
     extractionFolder = output_folder + '/' + 'SteglineGenerated'
     file_extension = os.path.splitext(input_file)[1][1:]
     copiedimage = extractionFolder + '/' + "processedWithOCR" + "." + file_extension
@@ -96,12 +97,34 @@ def image_ocr(input_file, output_folder):
 
     image = cv2.imread(input_file)
 
+    # unedited image
+    stringsList.append(pytesseract.image_to_string(image))
 
     # pure white text filter
     th, binaryFiltered = cv2.threshold(cv2.bitwise_not(image), 5, 255, cv2.THRESH_BINARY)
-    cv2.imwrite(copiedimage, binaryFiltered)
+    stringsList.append(pytesseract.image_to_string(binaryFiltered))
+
+    # noisy background
+
+    # noisy + colorful
 
 
-    return pytesseract.image_to_string(binaryFiltered)
+    #normal noise
+    return text_process(stringsList)
 
+
+# attempts to return the string in the list that looks the most like text
+def text_process(text):
+    # placeholder logic
+
+    selected_index = 0
+
+    # current version determines result on non whitespace chars produced, this generally tracks with the best ocr
+    # this will be swapped out eventully to filter for words/flags
+    for index, result in enumerate(text):
+        if len(result) - text.count(' ') > len(text[selected_index]) - text[selected_index].count(' '):
+            selected_index = index
+    return text[index]
+
+    print("end of text process")
 
