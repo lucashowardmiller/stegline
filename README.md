@@ -1,6 +1,8 @@
 # stegline
 Stegline is a repackaging of existing programs, non-novel implemenations of python functions, and maybe something new.
 
+Stegline is designed to unify existing tools fractured capibility.
+
 StegLine will put the results of each modules analysis into the output_folder.
 
 ### Usage:
