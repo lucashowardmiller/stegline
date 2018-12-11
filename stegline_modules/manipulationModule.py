@@ -57,6 +57,7 @@ def shiftcolormap(input_file):
     print("end of colormap")
 
 
+# wraps image_ocr() to print out ocr results nicely
 def textfind(input_file, output_folder):
 
     file_extension = os.path.splitext(input_file)[1][1:]
@@ -71,7 +72,7 @@ def textfind(input_file, output_folder):
 
     f = open(reportLocation, "a+")
     f.write("\n" + "Text found in the image:" + "\n")
-    f.write(textsearch(copiedimage))
+    f.write(image_ocr(copiedimage, output_folder))
     f.write("\n\n")
     f.close()
 
@@ -84,6 +85,23 @@ def imagemanipulation(input_file, output_folder):
 
 
 # will clean an image before pytesseract
-def textsearch(input_file: Image):
-    return pytesseract.image_to_string(Image.open(input_file))
+def image_ocr(input_file, output_folder):
+    extractionFolder = output_folder + '/' + 'SteglineGenerated'
+    file_extension = os.path.splitext(input_file)[1][1:]
+    copiedimage = extractionFolder + '/' + "processedWithOCR" + "." + file_extension
+    copiedimage2 = extractionFolder + '/' + "processedWithOCR2" + "." + file_extension
+
+    if not os.path.exists(extractionFolder):
+        os.mkdir(extractionFolder)
+
+    image = cv2.imread(input_file)
+
+
+    # pure white text filter
+    th, binaryFiltered = cv2.threshold(cv2.bitwise_not(image), 5, 255, cv2.THRESH_BINARY)
+    cv2.imwrite(copiedimage, binaryFiltered)
+
+
+    return pytesseract.image_to_string(binaryFiltered)
+
 
