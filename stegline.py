@@ -38,9 +38,7 @@ moduleParser.add_argument('-a', action="store_true", default=False, help='Enable
 args = moduleParser.parse_args()
 
 input_file = args.INPUT_FILE
-print(input_file)
 output_folder = args.OUTPUT_FOLDER
-print(output_folder)
 
 if not os.path.isfile(input_file):
     print("INPUT_FILE must be a file")
@@ -58,12 +56,11 @@ f.write("/ _\/__   \/__\/ _ \ / /   \_   \/\ \ \/__\ " + "\n")
 f.write("\ \   / /\/_\ / /_\// /     / /\/  \/ /_\\  " + "\n")
 f.write("_\ \ / / //__/ /_\\\/ /___/\/ /_/ /\  //__  " + "\n")
 f.write("\__/ \/  \__/\____/\____/\____/\_\ \/\__/   " + "\n")
-f.write("                                            " + "\n")
-f.write("Created by Lucas Miller" + "\n")
-f.write("github.com/lucashowardmiller/stegline" + "\n")
+f.write("Created by: Lucas Miller" + "\n")
+f.write("github.com/lucashowardmiller/stegline" + "\n\n")
 f.close()
 
-# printout what mods args are enabled and runs the functions
+# runs the functions for specified args
 argsModules = moduleParser.parse_args()
 if argsModules.b or argsModules.a:
     lsbModule.lsb(input_file, output_folder)
@@ -86,5 +83,10 @@ if argsModules.s or argsModules.a:
 # TODO enable resize again for -a once it stops breaking files
 if argsModules.z:
     manipulationModule.resize(input_file, output_folder)
+
+# fixes header on multiple runs
+f = open(reportLocation, "a+")
+f.write("\n")
+f.close()
 
 
