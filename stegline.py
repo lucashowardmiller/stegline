@@ -72,8 +72,7 @@ if argsModules.x or argsModules.a:
     metaModule.exif(input_file, output_folder)
 
 if argsModules.t or argsModules.a:
-    manipulationModule.image_ocr(input_file, output_folder)
-    manipulationModule.textfind(input_file, output_folder)
+    manipulationModule.text_find(input_file, output_folder)
 
 if argsModules.f or argsModules.a:
     fileModule.filecheck(input_file, output_folder)

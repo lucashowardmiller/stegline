@@ -52,18 +52,19 @@ def resize(input_file, output_folder):
     print("resize end")
 
 
-def shiftcolormap(input_file):
+# changes colormaps to look for hidden text
+def shift_colormap(input_file):
 
     print("end of colormap")
 
 
 # changes tints to look for hidden text
-def imagemanipulation(input_file, output_folder):
+def image_manipulation(input_file, output_folder):
     print('end of image manipulation')
 
 
-# wraps image_ocr() to print out ocr results nicely
-def textfind(input_file, output_folder):
+# wraps image_ocr() to print out ocr results nicely to the report
+def text_find(input_file, output_folder):
 
     file_extension = os.path.splitext(input_file)[1][1:]
     reportLocation = output_folder + '/' + 'report.txt'
@@ -81,7 +82,7 @@ def textfind(input_file, output_folder):
     f.write("\n\n")
     f.close()
 
-    print('end of textfind()')
+    print('end of text_find()')
 
 
 # will clean an image before pytesseract
@@ -101,26 +102,28 @@ def image_ocr(input_file, output_folder):
     stringsList.append(pytesseract.image_to_string(image))
 
     # pure white text filter
-    th, binaryFiltered = cv2.threshold(cv2.bitwise_not(image), 5, 255, cv2.THRESH_BINARY)
-    stringsList.append(pytesseract.image_to_string(binaryFiltered))
+    th, inverseBinaryFiltered = cv2.threshold(cv2.bitwise_not(image), 5, 255, cv2.THRESH_BINARY)
+    stringsList.append(pytesseract.image_to_string(inverseBinaryFiltered))
+
+    # normal text
+
 
     # noisy background
 
+
     # noisy + colorful
 
-
-    #normal noise
     return text_process(stringsList)
 
 
 # attempts to return the string in the list that looks the most like text
 def text_process(text):
-    # placeholder logic
 
+    # used to track the most text looking text
     selected_index = 0
 
     # current version determines result on non whitespace chars produced, this generally tracks with the best ocr
-    # this will be swapped out eventully to filter for words/flags
+    # this will be swapped out eventually to filter for words/flags
     for index, result in enumerate(text):
         if len(result) - text.count(' ') > len(text[selected_index]) - text[selected_index].count(' '):
             selected_index = index
