@@ -31,14 +31,15 @@ moduleParser.add_argument('-t', action="store_true", default=False, help='Enable
 moduleParser.add_argument('-f', action="store_true", default=False, help='Enables file info modules')
 moduleParser.add_argument('-s', action="store_true", default=False, help='Enables strings module')
 moduleParser.add_argument('-z', action="store_true", default=False, help='Enables resize module')
+moduleParser.add_argument('-i', action="store_true", default=False, help='Enables image manipulation module')
 moduleParser.add_argument('-a', action="store_true", default=False, help='Enables all modules')
 
 
 # Parsing and using the arguments
 args = moduleParser.parse_args()
 
-input_file = args.INPUT_FILE
-output_folder = args.OUTPUT_FOLDER
+input_file = str(args.INPUT_FILE)
+output_folder = str(args.OUTPUT_FOLDER)
 
 if not os.path.isfile(input_file):
     print("INPUT_FILE must be a file")
@@ -80,6 +81,8 @@ if argsModules.f or argsModules.a:
 if argsModules.s or argsModules.a:
     metaModule.strings(input_file, output_folder)
 
+if argsModules.i or argsModules.a:
+    manipulationModule.image_manipulation(input_file, output_folder)
 # TODO enable resize again for -a once it stops breaking files
 if argsModules.z:
     manipulationModule.resize(input_file, output_folder)
