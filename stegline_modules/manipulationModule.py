@@ -92,10 +92,7 @@ def image_manipulation(input_file, output_folder):
     results.append(image_ocr(xorImage, output_folder))
 
     # map shifts
-    colormapAutum = image.copy()
-    cv2.cvtColor(colormapAutum, cv2.COLORMAP_AUTUMN)
-    results.append(colormapAutum, output_folder)
-
+    # taken out for debugging
 
     # selects the run with the most non-zero chars, again not always the best
     print(text_process(results))
@@ -142,16 +139,11 @@ def image_ocr(input_file, output_folder):
     stringsList.append(pytesseract.image_to_string(image))
 
     # pure white text filter
-    th, inverseBinaryFiltered = cv2.threshold(cv2.bitwise_not(image), 5, 255, cv2.THRESH_BINARY)
+    whiteText  = image.copy()
+    th, inverseBinaryFiltered = cv2.threshold(cv2.bitwise_not(whiteText), 5, 255, cv2.THRESH_BINARY)
     stringsList.append(pytesseract.image_to_string(inverseBinaryFiltered))
 
     # normal text
-
-
-    # noisy background
-
-
-    # noisy + colorful
 
     return text_process(stringsList)
 
