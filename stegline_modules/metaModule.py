@@ -35,6 +35,7 @@ def strings(input_file, output_folder):
     # used to match ABCD{FLAG_w@CkY}
     flag_brackets = re.compile('.*{.*}')
     # used to match NCL/SKY, can false match with something like NKL-ABCD-1234
+    # improved (?i)(NCL|SKY)-[a-zA-Z]{4}-[0-9]{4}, figure out how to return whole string only NCL/SKY now
     flag_skyncl = re.compile('[NCLSKYnclsky]{3}-[a-zA-Z]{4}-[0-9]{4}')
     # hactober/generic, can false match with something like glaf-dkskdjsk
     flag_generic = re.compile('[FLAGflag]{4}-.*')
