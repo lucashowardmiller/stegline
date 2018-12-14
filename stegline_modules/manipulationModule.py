@@ -9,7 +9,9 @@ import mmap
 # used to copy the mmap image file
 import shutil
 import pytesseract
+import numpy as np
 import datetime
+
 
 
 # https://motherboard.vice.com/en_us/article/qkjbkw/hack-this-edit-an-image-with-python
@@ -40,7 +42,7 @@ def resize(input_file, output_folder):
         size_controls_prefix = bytearray([0xFF, 0xC0, 0x00, 0x11, 0x08])
         new_size = bytearray([0x01, 0xE1, 0x01, 0xD9])
 
-        with open(copiedimage, 'r+b') as img:
+        with open(input_file, 'r') as img:
             imgByteMap = mmap.mmap(img.fileno(), 0)
             print(imgByteMap.readline())
 
@@ -60,6 +62,43 @@ def shift_colormap(input_file):
 
 # changes tints to look for hidden text
 def image_manipulation(input_file, output_folder):
+    # holds results of each filter ocr_resut run
+    results = []
+
+    # loads image that is copied by various filters
+    image = cv2.imread(input_file)
+
+    # normal run
+    results.append(image_ocr(image, output_folder))
+
+    # turns off all but one color channel, and runs ocr on them and add results to the list
+    blueChannel = image.copy()
+    blueChannel[:, :, 1] = 0
+    blueChannel[:, :, 2] = 0
+    results.append(image_ocr(blueChannel, output_folder))
+
+    greenChannel = image.copy()
+    greenChannel[:, :, 0] = 0
+    greenChannel[:, :, 2] = 0
+    results.append(image_ocr(greenChannel, output_folder))
+
+    redChannel = image.copy()
+    redChannel[:, :, 0] = 0
+    redChannel[:, :, 1] = 0
+    results.append(image_ocr(redChannel, output_folder))
+
+    # xor
+    xorImage = cv2.bitwise_not(image.copy())
+    results.append(image_ocr(xorImage, output_folder))
+
+    # map shifts
+    colormapAutum = image.copy()
+    cv2.cvtColor(colormapAutum, cv2.COLORMAP_AUTUMN)
+    results.append(colormapAutum, output_folder)
+
+
+    # selects the run with the most non-zero chars, again not always the best
+    print(text_process(results))
     print('end of image manipulation')
 
 
@@ -73,7 +112,6 @@ def text_find(input_file, output_folder):
 
     if not os.path.exists(extractionFolder):
         os.mkdir(extractionFolder)
-
     shutil.copy2(input_file, copiedimage)
 
     f = open(reportLocation, "a+")
@@ -89,14 +127,16 @@ def text_find(input_file, output_folder):
 def image_ocr(input_file, output_folder):
     stringsList = []
     extractionFolder = output_folder + '/' + 'SteglineGenerated'
-    file_extension = os.path.splitext(input_file)[1][1:]
-    copiedimage = extractionFolder + '/' + "processedWithOCR" + "." + file_extension
-    copiedimage2 = extractionFolder + '/' + "processedWithOCR2" + "." + file_extension
 
     if not os.path.exists(extractionFolder):
         os.mkdir(extractionFolder)
 
-    image = cv2.imread(input_file)
+    # if called with cv2 or np array will use that, or will use string to path
+    # path should be validated by stegline.py
+    if isinstance(input_file, str):
+        image = cv2.imread(input_file)
+    else:
+        image = input_file
 
     # unedited image
     stringsList.append(pytesseract.image_to_string(image))
