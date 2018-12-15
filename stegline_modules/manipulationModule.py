@@ -1,7 +1,5 @@
 import cv2
-import numpy as np
 from PIL import Image
-
 # used to get file extension
 import os
 # used to modify bytes
@@ -9,17 +7,11 @@ import mmap
 # used to copy the mmap image file
 import shutil
 import pytesseract
-import numpy as np
-import datetime
+import binwalk
 
-
-
-# https://motherboard.vice.com/en_us/article/qkjbkw/hack-this-edit-an-image-with-python
-
-# TODO add bluring and such for better tesserect handeling / change to opencv
-# TODO add baseline functionality and create some sort of report
 
 def resize(input_file, output_folder):
+    """resizes an image, to look for bytes hidden by size control stenography"""
     file_extension = os.path.splitext(input_file)[1][1:]
     reportLocation = output_folder + '/' + 'report.txt'
     extractionFolder = output_folder + '/' + 'SteglineGenerated'
@@ -32,7 +24,6 @@ def resize(input_file, output_folder):
 
     f = open(reportLocation, "a+")
 
-
     # gets the extension as resize works differently on each image type
     # jpg trigger this could probably use magic bytes
     if file_extension == 'jpg':
@@ -42,9 +33,22 @@ def resize(input_file, output_folder):
         size_controls_prefix = bytearray([0xFF, 0xC0, 0x00, 0x11, 0x08])
         new_size = bytearray([0x01, 0xE1, 0x01, 0xD9])
 
-        with open(input_file, 'r') as img:
+        with open(copiedimage, 'rb') as img:
             imgByteMap = mmap.mmap(img.fileno(), 0)
-            print(imgByteMap.readline())
+            # finds the location of the size control byte prefix
+            size_location = imgByteMap.find(size_controls_prefix)
+            # converts each of the bytes to the new size control
+            imgByteMap[size_location + 5] = new_size[0]
+            imgByteMap[size_location + 6] = new_size[1]
+            imgByteMap[size_location + 7] = new_size[2]
+            imgByteMap[size_location + 8] = new_size[3]
+            # makes sure the changes are written back to the disk
+            imgByteMap.flush()
+            # counts original unique colors vs new unique colors introduced with manipulation
+            if count_pixels(input_file) > count_pixels(copiedimage) + 2:
+                f.write("Hidden data was found, with size control modification" + "\n")
+            else:
+                f.write("No hidden data was found, with size control modification" + "\n")
 
     else:
         # prints if file_extension has no matches
@@ -52,6 +56,15 @@ def resize(input_file, output_folder):
     f.close()
 
     print("resize end")
+
+def count_pixels(image):
+    unique_colors = set()
+    for i in range(image.size[0]):
+        for j in range(image.size[1]):
+            pixel = image.getpixel((i, j))
+            unique_colors.add(pixel)
+    return len(unique_colors)
+    print("end of count")
 
 
 # changes colormaps to look for hidden text
@@ -62,7 +75,7 @@ def shift_colormap(input_file):
 
 # changes tints to look for hidden text
 def image_manipulation(input_file, output_folder):
-    # holds results of each filter ocr_resut run
+    # holds results of each filter ocr_result run
     results = []
 
     # loads image that is copied by various filters
@@ -95,7 +108,16 @@ def image_manipulation(input_file, output_folder):
     # taken out for debugging
 
     # selects the run with the most non-zero chars, again not always the best
-    print(text_process(results))
+    textPrcocessResults =text_process(results)
+    reportLocation = output_folder + '/' + 'report.txt'
+    f = open(reportLocation, "a+")
+    f.write("\n" + "Image Manipulation Results: " + "\n")
+    if len(textPrcocessResults) > 0:
+        f.write("Potentially hidden text found in image" + "\n")
+        f.write(textPrcocessResults + "\n")
+    else:
+        f.write("No hidden text was identified")
+    f.close()
     print('end of image manipulation')
 
 
@@ -155,11 +177,10 @@ def text_process(text):
     selected_index = 0
 
     # current version determines result on non whitespace chars produced, this generally tracks with the best ocr
-    # this will be swapped out eventually to filter for words/flags
+    # this will be swapped out eventually to filter for words and certainty
     for index, result in enumerate(text):
         if len(result) - text.count(' ') > len(text[selected_index]) - text[selected_index].count(' '):
             selected_index = index
     return text[index]
 
-    print("end of text process")
 
