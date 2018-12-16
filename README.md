@@ -1,4 +1,7 @@
 # stegline
+
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/lucashowardmiller/stegline/blob/master/license.md)
+
 Stegline is a repackaging of existing programs, non-novel implemenations of python functions, and maybe something new.
 
 Stegline is designed to unify existing tools fractured capibility.
@@ -23,7 +26,5 @@ Dependencies are a little unstable.
 
 Current Dependencies:
 - Pillow 5.3.0
-- Binwalk (from source, pypi package does not work)
-- ExifRead 2.1.2
-- Pytesseract
+- Binwalk
 - cv2
