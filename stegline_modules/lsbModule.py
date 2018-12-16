@@ -1,4 +1,5 @@
-#TODO write/steal MIT moduale from github
+# TODO implement
+
 
 def lsb(input_file, output_folder):
     print()

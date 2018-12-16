@@ -45,7 +45,7 @@ def resize(input_file, output_folder):
             # makes sure the changes are written back to the disk
             imgByteMap.flush()
             # counts original unique colors vs new unique colors introduced with manipulation
-            if count_pixels(input_file) > count_pixels(copiedimage) + 2:
+            if count_pixels(input_file) > count_pixels(copiedimage):
                 f.write("Hidden data was found, with size control modification" + "\n")
             else:
                 f.write("No hidden data was found, with size control modification" + "\n")
