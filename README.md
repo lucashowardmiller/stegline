@@ -1,6 +1,6 @@
 # stegline
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/lucashowardmiller/stegline/blob/master/license.md)  [![Python](https://img.shields.io/badge/python-3.7-blue.svg)](https://www.python.org/downloads/release/python-370/)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/lucashowardmiller/stegline/blob/master/license.md)   [![Python](https://img.shields.io/badge/python-3.7-blue.svg)](https://www.python.org/downloads/release/python-370/)
 
 
 Stegline is a repackaging of existing programs, non-novel implemenations of python functions, and maybe something new.
