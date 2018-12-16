@@ -18,6 +18,8 @@ StegLine will put the results of each modules analysis into the output_folder.
 - Seeing if a files magic bytes matches its file extension
 - Can detect hidden files in an image
 - OCR capabilities
+- Detecting data hidden with size control manipulation
+- Detecting data hidden with color channel manipulation
 
 
 ### Dependencies:
